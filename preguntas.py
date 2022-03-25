@@ -18,10 +18,14 @@ def pregunta_01():
     Retorne la suma de la segunda columna.
 
     Rta/
-    214
+    
 
     """
-    return 214
+    x = open("Data.csv", "r").readlines()
+    x=[z.replace("\t",",") for z in x]
+    x=[z.split(",")for z in x]
+    x_segunda_col=[int(z[1])for z in x]
+    return sum(x_segunda_col)
 
 
 def pregunta_02():
