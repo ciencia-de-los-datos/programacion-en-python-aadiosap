@@ -21,7 +21,7 @@ def pregunta_01():
     
 
     """
-    x = open("Data.csv", "r").readlines()
+    x = open("data.csv", "r").readlines()
     x=[z.replace("\t",",") for z in x]
     x=[z.split(",")for z in x]
     x_segunda_col=[int(z[1])for z in x]
@@ -43,6 +43,14 @@ def pregunta_02():
     ]
 
     """
+    
+    from collections import Counter
+    col_1=[z[0]for z in x]
+    col_1
+    cuenta_unicos=Counter(col_1)
+    cuenta_unicos
+    y=[(k,v)for k,v in cuenta_unicos.items()]
+    sorted(y)
     return
 
 
@@ -61,6 +69,14 @@ def pregunta_03():
     ]
 
     """
+    col_1_2=[(z[0],int(z[1])) for z in x]
+    contador=Counter()
+    for k,v in col_1_2:
+    contador[k]+=v
+    sorted(list(contador.items()))
+    
+    
+    
     return
 
 
@@ -86,6 +102,13 @@ def pregunta_04():
     ]
 
     """
+    mes_segundacol=[(z[2].split("-")[1],int(z[1])) for z in x]
+    mes_segundacol
+    contador2=Counter()
+    for k,v in mes_segundacol:
+    contador2[k]+=1
+    sorted(list(contador2.items()))
+    
     return
 
 
