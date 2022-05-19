@@ -69,11 +69,7 @@ def pregunta_03():
     ]
 
     """
-    col_1_2=[(z[0],int(z[1])) for z in x]
-    contador=Counter()
-    for k,v in col_1_2:
-    contador[k]+=v
-    sorted(list(contador.items()))
+   
     
     
     
@@ -102,12 +98,7 @@ def pregunta_04():
     ]
 
     """
-    mes_segundacol=[(z[2].split("-")[1],int(z[1])) for z in x]
-    mes_segundacol
-    contador2=Counter()
-    for k,v in mes_segundacol:
-    contador2[k]+=1
-    sorted(list(contador2.items()))
+    
     
     return
 
