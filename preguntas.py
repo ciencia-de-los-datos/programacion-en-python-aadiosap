@@ -21,7 +21,7 @@ def pregunta_01():
     
 
     """
-    x = open("C:\data.csv", "r").readlines()
+    x = open("data.csv", "r").readlines()
     x=[z.replace("\t",",") for z in x]
     x=[z.split(",")for z in x]
     x_segunda_col=[int(z[1])for z in x]
