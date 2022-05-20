@@ -103,6 +103,8 @@ def pregunta_04():
 
     """
     x = open("data.csv", "r").readlines()
+    x=[z.replace("\t",",") for z in x]
+    x=[z.split(",")for z in x]
     from collections import Counter
     mes_segundacol=[(z[2].split("-")[1],int(z[1])) for z in x]
     mes_segundacol
@@ -129,6 +131,8 @@ def pregunta_05():
     """
 
     x = open("data.csv", "r").readlines()
+    x=[z.replace("\t",",") for z in x]
+    x=[z.split(",")for z in x]
     lista_p5=[]
     lista_p5_2=[]
     respuesta_5=[]
@@ -176,6 +180,8 @@ def pregunta_06():
 
     """
     x = open("data.csv", "r").readlines()
+    x=[z.replace("\t",",") for z in x]
+    x=[z.split(",")for z in x]
     lista_p6=[]
     dict_p6={}
     minimo=0
@@ -253,6 +259,8 @@ def pregunta_07():
 
     """
     x = open("data.csv", "r").readlines()
+    x=[z.replace("\t",",") for z in x]
+    x=[z.split(",")for z in x]
     dict_p7={}
     lista_aux=[]
     lista_aux2=[]
@@ -298,6 +306,8 @@ def pregunta_08():
 
     """
     x = open("data.csv", "r").readlines()
+    x=[z.replace("\t",",") for z in x]
+    x=[z.split(",")for z in x]
     dict_p8={}
     lista_aux=[]
     lista_aux2=[]
@@ -341,6 +351,8 @@ def pregunta_09():
 
     """
     x = open("data.csv", "r").readlines()
+    x=[z.replace("\t",",") for z in x]
+    x=[z.split(",")for z in x]
     lista_p9=[]
     lista_p9_2=[]
     dict_p9={}
@@ -389,6 +401,9 @@ def pregunta_10():
 
     """
     x = open("data.csv", "r").readlines()
+    x=[z.replace("\t",",") for z in x]
+    x=[z.split(",")for z in x]
+
     col_1=[z[0] for z in x]
     col_1
 
@@ -427,6 +442,9 @@ def pregunta_11():
 
     """
     x = open("data.csv", "r").readlines()
+    x=[z.replace("\t",",") for z in x]
+    x=[z.split(",")for z in x]
+
     dict_p11={}
     contador=0
 
@@ -463,6 +481,9 @@ def pregunta_12():
 
     """
     x = open("data.csv", "r").readlines()
+    x=[z.replace("\t",",") for z in x]
+    x=[z.split(",")for z in x]
+    
     lista_p12=[]
     contador=0
     dict_p12={}
