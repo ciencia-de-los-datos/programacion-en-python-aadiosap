@@ -70,9 +70,10 @@ def pregunta_03():
 
     """
     x = open("data.csv", "r").readlines()
+    x=[z.replace("\t",",") for z in x]
+    x=[z.split(",")for z in x]
     from collections import Counter
     col_1_2=[(z[0],int(z[1])) for z in x]
-    col_1_2
     contador=Counter()
     for k,v in col_1_2:
         contador[k]+=v
