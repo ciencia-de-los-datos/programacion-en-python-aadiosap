@@ -77,7 +77,6 @@ def pregunta_03():
     contador=Counter()
     for k,v in col_1_2:
         contador[k]+=v
-        
     return sorted(list(contador.items()))
 
 
