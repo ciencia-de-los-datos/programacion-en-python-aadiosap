@@ -131,30 +131,14 @@ def pregunta_05():
     """
 
     x = open("data.csv", "r").readlines()
-    x=[z.replace("\t",",") for z in x]
-    x=[z.split(",")for z in x]
-    lista_p5=[]
-    lista_p5_2=[]
-    respuesta_5=[]
-    respuesta_5=[]
-    respuesta_final_5=[]
-    col_1_2=[(z[0],int(z[1])) for z in x]
-    col_1_2[0][0]
+    x = [z.replace('\n', '') for z in x]
+    x = [z.replace('\t', ',') for z in x]
+    x = [z.split(',') for z in x]
+    primera_y_segunda_columna = sorted([(z[0], int(z[1])) for z in x])
+    agrupada_por_primera = [(k, [z[1] for z in g]) for k, g in groupby(primera_y_segunda_columna, lambda a: a[0])]
 
-    for i in col_1_2:
-        if i[0] not in lista_p5:
-            lista_p5.append(i[0])
-            lista_p5_2=[]
-            for j in col_1_2:
-                if j[0]==i[0]:
-                    lista_p5_2.append(int(j[1]))
-            lista_p5.append(lista_p5_2)
-    respuesta_5=list(((lista_p5[0:2]),(lista_p5[2:4]),(lista_p5[4:6]),(lista_p5[6:8]),(lista_p5[8:10])))
-   
-    for i in respuesta_5:
-        respuesta_final_5.append(([(i[0]),max(i[1]),min(i[1])]))
-
-    return tuple(sorted(respuesta_final_5))
+    return [(primera_columna, max(segundas_columnas), min(segundas_columnas)) for primera_columna, segundas_columnas in
+            agrupada_por_primera]
 
 
 def pregunta_06():
@@ -259,28 +243,21 @@ def pregunta_07():
 
     """
     x = open("data.csv", "r").readlines()
-    x=[z.replace("\t",",") for z in x]
-    x=[z.split(",")for z in x]
-    dict_p7={}
-    lista_aux=[]
-    lista_aux2=[]
+    x = [z.replace('\n', '') for z in x]
+    x = [z.replace('\t', ',') for z in x]
+    x = [z.split(',') for z in x]
+    primera_y_segunda_columna = [(z[1], z[0]) for z in x]
 
-    col_1=[z[1]for z in x]
-    col_1
+    def reducir(valor, par):
+        if par[0] in valor:
+            valor[par[0]] = valor[par[0]] + [par[1]]
+        else:
+            valor[par[0]] = [par[1]]
+        return valor
 
-    col_1_0=[[z[1],z[0]]for z in x]
-    col_1_0
+    conteo = reduce(reducir, primera_y_segunda_columna, {})
 
-    for i in col_1:
-        for a in col_1_0:
-            dict_p7[i]={}
-            if a[0]==i:
-                if a[1] not in list(dict_p7[i].values()):
-                    lista_aux.append(a[1])
-        dict_p7[i]=lista_aux
-        lista_aux=[]
-    
-    return list(tuple(list(dict_p7.items())))
+    return sorted((int(k), v) for k, v in conteo.items())
 
 
 def pregunta_08():
@@ -306,28 +283,24 @@ def pregunta_08():
 
     """
     x = open("data.csv", "r").readlines()
-    x=[z.replace("\t",",") for z in x]
-    x=[z.split(",")for z in x]
-    dict_p8={}
-    lista_aux=[]
-    lista_aux2=[]
-
-    col_1=[z[1]for z in x]
-    col_1
-
-    col_1_0=[[z[1],z[0]]for z in x]
-    col_1_0
-
-    for i in col_1:
-        for a in col_1_0:
-            dict_p8[i]={}
-            if a[0]==i:
-                if a[1] not in list(dict_p8[i].values()):
-                    lista_aux.append(a[1])
-        dict_p8[i]=sorted(list(set(lista_aux)))
-        lista_aux=[]
+    x = [z.replace('\n', '') for z in x]
+    x = [z.replace('\t', ',') for z in x]
+    x = [z.split(',') for z in x]
     
-    return list(tuple(list(sorted(dict_p8.items()))))
+    primera_y_segunda_columna = [(z[1], z[0]) for z in x]
+
+    def reducir(valor, par):
+        if par[0] in valor:
+            valor[par[0]] = valor[par[0]] + [par[1]]
+        else:
+            valor[par[0]] = [par[1]]
+        return valor
+
+    conteo = reduce(reducir, primera_y_segunda_columna, {})
+
+    return sorted((int(k), sorted(list(set(v)))) for k, v in conteo.items())
+    
+    
 
 
 def pregunta_09():
@@ -483,7 +456,7 @@ def pregunta_12():
     x = open("data.csv", "r").readlines()
     x=[z.replace("\t",",") for z in x]
     x=[z.split(",")for z in x]
-    
+
     lista_p12=[]
     contador=0
     dict_p12={}
