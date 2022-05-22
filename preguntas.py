@@ -13,6 +13,10 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 """
 
 
+from functools import reduce
+from itertools import groupby
+
+
 def pregunta_01():
     """
     Retorne la suma de la segunda columna.
@@ -135,6 +139,7 @@ def pregunta_05():
     x = [z.replace('\t', ',') for z in x]
     x = [z.split(',') for z in x]
     primera_y_segunda_columna = sorted([(z[0], int(z[1])) for z in x])
+
     agrupada_por_primera = [(k, [z[1] for z in g]) for k, g in groupby(primera_y_segunda_columna, lambda a: a[0])]
 
     return [(primera_columna, max(segundas_columnas), min(segundas_columnas)) for primera_columna, segundas_columnas in
