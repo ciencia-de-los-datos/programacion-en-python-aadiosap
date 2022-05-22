@@ -169,61 +169,15 @@ def pregunta_06():
 
     """
     x = open("data.csv", "r").readlines()
-    x=[z.replace("\t",",") for z in x]
-    x=[z.split(",")for z in x]
-    lista_p6=[]
-    dict_p6={}
-    minimo=0
-    maximo=0
-    lista_letras=[]
-    lista_numeros=[]
-    lista_aux=[]
-    lista_aux2=[]
-    lista_aux3=[]
-    respuesta_p6_2=[]
+    x = [z.replace('\n', '') for z in x]
+    x = [z.replace('\t', ';') for z in x]
+    x = [z.split(';') for z in x]
+    quinta_columna = [z[4].split(',') for z in x]
+    quinta_columna_plana = sorted(item.split(':') for linea in quinta_columna for item in linea)
+    quinta_columna_agrupada = [(k, [int(z[1]) for z in g]) for k, g in groupby(quinta_columna_plana, lambda a: a[0])]
 
-    col_4=[[y for y in z if ":" in y] for z in x]
-    col_4=[[z[:-1] if "\n" in z else z for z in x] for x in col_4]
-    col_4
-
-    letras=[[y[0:3]for y in z] for z in col_4]
-    letras
-
-    for i in letras:
-        for j in i:
-            lista_letras.append(j)
-    lista_letras=list(sorted(set(lista_letras)))
-    lista_letras
-
-    numeros=[[y for y in z] for z in col_4]
-    numeros
-
-    for i in numeros:
-        for j in i:
-            lista_numeros.append(j)
-    lista_numeros=list(sorted(set(lista_numeros)))
-    lista_numeros
-
-    for i in lista_letras:
-        lista_aux=[]
-        lista_aux2=[]
-        for j in lista_numeros:
-            if j[0:3] == i:
-                lista_aux.append(int(j[4:]))
-                lista_aux2=(i,lista_aux)
-        lista_p6.append(lista_aux2)
-    lista_p6
-
-    for i in lista_p6:
-        dict_p6[i[0]]=(min(i[1]),max(i[1]))
-    respuesta_p6=list(dict_p6.items())
-    respuesta_p6
-
-    for i in respuesta_p6:
-        lista_aux3=(i[0],i[1][0],i[1][1])
-    respuesta_p6_2.append((lista_aux3))
-    
-    return respuesta_p6_2
+    return [(primera_columna, min(segundas_columnas), max(segundas_columnas)) for primera_columna, segundas_columnas in
+            quinta_columna_agrupada]
 
 
 def pregunta_07():
